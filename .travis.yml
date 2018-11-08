@@ -1,0 +1,10 @@
+sudo: required
+
+language: c
+
+services:
+  - docker
+
+script:
+  - docker build -t foo .
+  - docker run --rm -ti foo clang-8 --version
