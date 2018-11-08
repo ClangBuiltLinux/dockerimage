@@ -6,5 +6,11 @@ services:
   - docker
 
 script:
-  - docker build -t foo .
-  - docker run --rm -ti foo clang-8 --version
+  - docker build -t nathanchance/cbl .
+  - docker run --rm -ti nathanchance/cbl clang-8 --version
+
+deploy:
+  provider: script
+  script: bash deploy.sh
+  on:
+    branch: master
