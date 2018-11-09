@@ -11,6 +11,7 @@ RUN apt-get update -qq && \
         binutils \
         binutils-aarch64-linux-gnu \
         binutils-arm-linux-gnueabi \
+        binutils-powerpc64le-linux-gnu \
         bison \
         ccache \
         curl \
