@@ -31,3 +31,19 @@ RUN apt-get update -qq
 RUN apt-get install -y \
         clang-8 \
         lld-8
+
+# Install packages that are required for QEMU
+RUN apt-get install -y \
+        libglib2.0-dev \
+        libpixman-1-dev \
+        pkg-config \
+        python
+
+# Build and install QEMU 3.0 from source
+RUN git clone https://git.qemu.org/git/qemu.git /root/qemu
+WORKDIR /root/qemu
+RUN git submodule update --init --recursive
+RUN ./configure --target-list="aarch64-softmmu arm-softmmu i386-softmmu x86_64-softmmu ppc-softmmu ppc64-softmmu"
+RUN make -j"$(nproc)" install
+WORKDIR /
+RUN rm -rf /root/qemu
