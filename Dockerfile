@@ -1,5 +1,5 @@
-# Use the latest Debian stable image as the base
-FROM debian:stretch
+# Use the latest Debian stable slim image as the base
+FROM debian:stretch-slim
 
 # Make sure that all packages are up to date then
 # install the base Debian packages that we need for
