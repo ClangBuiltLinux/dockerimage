@@ -1,5 +1,6 @@
-# Use the latest Debian stable slim image as the base
-FROM debian:stretch-slim
+# Use the latest Debian unstable slim image as the base
+# TODO: Move back to stable when nightlies are fixed
+FROM debian:unstable-slim
 
 # Make sure that all packages are up to date then
 # install the base Debian packages that we need for
@@ -32,7 +33,7 @@ RUN apt-get update -qq && \
 
 # Install the latest nightly Clang/lld packages from apt.llvm.org
 RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-    echo "deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch main" | tee -a /etc/apt/sources.list && \
+    echo "deb http://apt.llvm.org/unstable/ llvm-toolchain main" | tee -a /etc/apt/sources.list && \
     apt-get update -qq && \
     apt-get install -y \
         clang-8 \
