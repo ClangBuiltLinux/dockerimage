@@ -20,6 +20,7 @@ RUN apt-get update -qq && \
         flex \
         git \
         gnupg \
+        libelf-dev \
         libglib2.0-dev \
         libpixman-1-dev \
         libssl-dev \
