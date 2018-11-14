@@ -8,6 +8,7 @@ services:
 script:
   - docker build -t nathanchance/cbl .
   - docker run --rm -ti nathanchance/cbl clang-8 --version
+  - docker run --rm -ti nathanchance/cbl qemu-system-x86_64 --version
 
 deploy:
   provider: script
