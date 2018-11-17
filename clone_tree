@@ -1,4 +1,5 @@
 function clone_tree() {
+    local BRANCH CHOICE FOLDER OWNER TREE
     CHOICE=${1:?}
 
     case ${CHOICE} in
