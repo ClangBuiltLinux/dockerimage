@@ -1,0 +1,20 @@
+function clone_tree() {
+    CHOICE=${1:?}
+
+    case ${CHOICE} in
+        linus|linux|mainline|torvalds)
+            OWNER=torvalds ;;
+        linux-next|next)
+            OWNER=next
+            TREE=linux-next ;;
+        stable-*)
+            BRANCH=linux-${CHOICE/stable-/}.y
+            FOLDER=${CHOICE}
+            OWNER=stable ;;
+        *)
+            echo "Choice not supported!"
+            return 1 ;;
+    esac
+
+    git -C /root clone --depth=1 -b ${BRANCH:=master} --single-branch git://git.kernel.org/pub/scm/linux/kernel/git/${OWNER}/${TREE:=linux}.git ${FOLDER:=${TREE}}
+}
