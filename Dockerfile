@@ -45,7 +45,7 @@ RUN curl https://download.qemu.org/qemu-3.0.0.tar.xz | tar -C /root -xJf - && \
     cd /root/qemu-3.0.0 && \
     ./configure --target-list="aarch64-softmmu arm-softmmu i386-softmmu x86_64-softmmu ppc-softmmu ppc64-softmmu" && \
     make -j"$(nproc)" install && \
-    rm -rf /root/qemu
+    rm -rf /root/qemu-3.0.0
 
 # Add a function to easily clone torvalds/linux, linux-next, and linux-stable
 COPY clone_tree /root
