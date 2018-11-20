@@ -7,17 +7,19 @@ FROM debian:unstable-slim
 # building the kernel and QEMU
 RUN apt-get update -qq && \
     apt-get upgrade -y && \
-    apt-get install -y \
+    apt-get install --no-install-recommends -y \
         bc \
         binutils \
         binutils-aarch64-linux-gnu \
         binutils-arm-linux-gnueabi \
         binutils-powerpc64le-linux-gnu \
         bison \
+        ca-certificates \
         ccache \
         curl \
         expect \
         flex \
+        gcc \
         git \
         gnupg \
         libelf-dev \
@@ -36,9 +38,10 @@ RUN apt-get update -qq && \
 RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
     echo "deb http://apt.llvm.org/unstable/ llvm-toolchain main" | tee -a /etc/apt/sources.list && \
     apt-get update -qq && \
-    apt-get install -y \
+    apt-get install --no-install-recommends -y \
         clang-8 \
-        lld-8
+        lld-8 \
+        llvm-8
 
 # Build and install QEMU 3.0 from source
 RUN curl https://download.qemu.org/qemu-3.0.0.tar.xz | tar -C /root -xJf - && \
