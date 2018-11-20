@@ -1,7 +1,6 @@
 #!/bin/bash
 set -eux
 echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-REPO=clangbuiltlinux/${BASE}
 docker push ${REPO}:${TAG}
 if [[ ${BASE} = "debian" ]]; then
     docker tag ${REPO}:${TAG} ${REPO}:latest
