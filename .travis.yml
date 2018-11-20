@@ -2,18 +2,22 @@ sudo: required
 
 language: c
 
+env:
+  global:
+    - TAG=$(date +%Y%m%d)
+
 matrix:
   include:
-    - name: "BASE=debian"
-      env: BASE=debian TAG=$(date +%Y%m%d)
+    - name: "Debian"
+      env: BASE=debian REPO=clangbuiltlinux/${BASE}
 
 services:
   - docker
 
 script:
-  - docker build -t nathanchance/cbl:${BASE}-${TAG} .
-  - docker run --rm -ti nathanchance/cbl:${BASE}-${TAG} clang-8 --version
-  - docker run --rm -ti nathanchance/cbl:${BASE}-${TAG} qemu-system-x86_64 --version
+  - docker build -t ${REPO}:${TAG} .
+  - docker run --rm -ti ${REPO}:${TAG} clang-8 --version
+  - docker run --rm -ti ${REPO}:${TAG} qemu-system-x86_64 --version
 
 deploy:
   provider: script
