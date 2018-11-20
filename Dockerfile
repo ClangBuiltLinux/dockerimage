@@ -47,7 +47,7 @@ RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
 RUN curl https://download.qemu.org/qemu-3.0.0.tar.xz | tar -C /root -xJf - && \
     cd /root/qemu-3.0.0 && \
     apt-get install --no-install-recommends -y gcc && \
-    ./configure --disable-blobs --target-list="aarch64-softmmu arm-softmmu i386-softmmu x86_64-softmmu ppc-softmmu ppc64-softmmu" && \
+    ./configure --disable-blobs --target-list="ppc-softmmu ppc64-softmmu" && \
     make -j"$(nproc)" install && \
     apt-get autoremove -y gcc && \
     rm -rf /root/qemu-3.0.0
