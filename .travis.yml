@@ -15,7 +15,7 @@ services:
   - docker
 
 script:
-  - docker build -t ${REPO}:${TAG} .
+  - docker build -t ${REPO}:${TAG} -t ${REPO}:latest .
   - docker run --rm -ti ${REPO}:${TAG} clang-8 --version
   - docker run --rm -ti ${REPO}:${TAG} qemu-system-x86_64 --version
   - docker run --rm -ti ${REPO}:${TAG} qemu-system-ppc --version
