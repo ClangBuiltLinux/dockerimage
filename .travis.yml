@@ -18,6 +18,7 @@ script:
   - docker build -t ${REPO}:${TAG} .
   - docker run --rm -ti ${REPO}:${TAG} clang-8 --version
   - docker run --rm -ti ${REPO}:${TAG} qemu-system-x86_64 --version
+  - docker run --rm -ti ${REPO}:${TAG} qemu-system-ppc --version
 
 deploy:
   provider: script
