@@ -1,12 +1,12 @@
-# Use the latest Debian unstable slim image as the base
-# TODO: Move back to stable when nightlies are fixed
-FROM debian:unstable-slim
+# Use the latest Ubuntu image as the base
+FROM ubuntu:rolling
 
 # Make sure that all packages are up to date then
-# install the base Debian packages that we need for
-# building the kernel and QEMU
+# install the base Ubuntu packages that we need for
+# building the kernel
 RUN apt-get update -qq && \
     apt-get upgrade -y && \
+    ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo "UTC" > /etc/timezone && \
     apt-get install --no-install-recommends -y \
         bc \
         binutils \
@@ -22,35 +22,24 @@ RUN apt-get update -qq && \
         git \
         gnupg \
         libelf-dev \
-        libglib2.0-dev \
-        libpixman-1-dev \
         libssl-dev \
         make \
-        pkg-config \
-        python \
-        openssl \
-        qemu-skiboot \
-        qemu-system-arm \
-        qemu-system-x86 \
-        xz-utils
+        openssl
 
-# Install the latest nightly Clang/lld packages from apt.llvm.org
+# Install the latest nightly Clang/lld packages from apt.llvm.org and QEMU packages from Joel Stanley's PPA
 RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-    echo "deb http://apt.llvm.org/unstable/ llvm-toolchain main" | tee -a /etc/apt/sources.list && \
+    echo "deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic main" | tee -a /etc/apt/sources.list && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E007EC6A && \
+    echo "deb http://ppa.launchpad.net/shenki/ppa/ubuntu cosmic main" | tee -a /etc/apt/sources.list && \
     apt-get update -qq && \
     apt-get install --no-install-recommends -y \
         clang-8 \
         lld-8 \
-        llvm-8
-
-# Build and install QEMU 3.0 from source
-RUN curl https://download.qemu.org/qemu-3.0.0.tar.xz | tar -C /root -xJf - && \
-    cd /root/qemu-3.0.0 && \
-    apt-get install --no-install-recommends -y gcc && \
-    ./configure --disable-blobs --target-list="ppc-softmmu ppc64-softmmu" && \
-    make -j"$(nproc)" install && \
-    apt-get autoremove -y gcc && \
-    rm -rf /root/qemu-3.0.0
+        llvm-8 \
+        skiboot \
+        qemu-system-arm \
+        qemu-system-ppc \
+        qemu-system-x86
 
 # Add a function to easily clone torvalds/linux, linux-next, and linux-stable
 COPY clone_tree /root
