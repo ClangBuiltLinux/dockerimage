@@ -1,8 +1,8 @@
 # ClangBuiltLinux Docker image
 
-This repo holds the files for [the ClangBuiltLinux Docker organization](https://hub.docker.com/r/clangbuiltlinux/). This allows us to have a consistent environment for our continuous integration, as well as getting other developers involved. It is based on Debian unstable and includes the nightly builds of Clang and lld from apt.llvm.org and binutils/QEMU for arm, arm64, powerpc, and x86_64.
+This repo holds the files for [the ClangBuiltLinux Docker organization](https://hub.docker.com/r/clangbuiltlinux/). This allows us to have a consistent environment for our continuous integration, as well as getting other developers involved. It is based on the latest Ubuntu image and includes the nightly builds of Clang and lld from apt.llvm.org and binutils/QEMU for arm, arm64, powerpc, and x86_64.
 
-Currently, this image is available for x86_64 hosts on [Docker Hub](https://hub.docker.com/r/clangbuiltlinux/debian/) (`docker run -ti clangbuiltlinux/debian`), which is updated daily via a Travis cron.
+Currently, this image is available for x86_64 hosts on [Docker Hub](https://hub.docker.com/r/clangbuiltlinux/ubuntu/) (`docker run -ti clangbuiltlinux/ubuntu`), which is updated daily via a Travis cron.
 
 If you do not have an x86_64 system but would like to have access to this image, you can still clone this repo and build the image via `docker build -t clangbuiltlinux/debian .`
 
@@ -12,4 +12,4 @@ Once you have started running this image, you will have the full set of tools ne
 
 ## Pushing a new image manually
 
-Travis handles pushing images when new commits are added to the repo and daily via a cron. However, if the images need to be refreshed manually and you have been given access to push new images to Docker Hub, you can push the image by building it via `docker build -t clangbuiltlinux/debian:$(date +%Y%m%d) -t clangbuiltlinux/debian:latest .` then `DOCKER_USERNAME=<your_username> DOCKER_PASSWORD=<your_password> ./deploy.sh`
+Travis handles pushing images when new commits are added to the repo and daily via a cron. However, if the images need to be refreshed manually and you have been given access to push new images to Docker Hub, you can push the image by building it via `docker build -t clangbuiltlinux/ubuntu:$(date +%Y%m%d) -t clangbuiltlinux/ubuntu:latest .` then `DOCKER_USERNAME=<your_username> DOCKER_PASSWORD=<your_password> ./deploy.sh`
