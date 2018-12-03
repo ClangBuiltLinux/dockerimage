@@ -4,7 +4,7 @@ This repo holds the files for [the ClangBuiltLinux Docker organization](https://
 
 Currently, this image is available for x86_64 hosts on [Docker Hub](https://hub.docker.com/r/clangbuiltlinux/debian/) (`docker run -ti clangbuiltlinux/debian`), which is updated daily via a Travis cron.
 
-If you do not have an x86_64 system but would like to have access to this image, you can still clone this repo and build the image via `docker build -t clangbuiltlinux/debian .`
+We are thinking of ways to make this image available to other architectures. The biggest blocker is the nightly Clang builds are only for x86.
 
 ## Using this image for development
 
