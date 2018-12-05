@@ -8,8 +8,8 @@ env:
 
 matrix:
   include:
-    - name: "Debian"
-      env: BASE=debian REPO=clangbuiltlinux/${BASE}
+    - name: "Ubuntu"
+      env: BASE=ubuntu REPO=clangbuiltlinux/${BASE}
 
 services:
   - docker
