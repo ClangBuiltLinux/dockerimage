@@ -24,7 +24,8 @@ RUN apt-get update -qq && \
         libelf-dev \
         libssl-dev \
         make \
-        openssl
+        openssl \
+        xz-utils
 
 # Install the latest nightly Clang/lld packages from apt.llvm.org and QEMU packages from Joel Stanley's PPA
 RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
