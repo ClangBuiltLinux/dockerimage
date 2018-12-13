@@ -42,7 +42,8 @@ RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
         skiboot \
         qemu-system-arm \
         qemu-system-ppc \
-        qemu-system-x86
+        qemu-system-x86 && \
+    chmod -f +x /usr/lib/llvm-8/bin/*
 
 # Add a function to easily clone torvalds/linux, linux-next, and linux-stable
 COPY clone_tree /root
