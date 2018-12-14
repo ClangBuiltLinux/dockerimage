@@ -27,6 +27,7 @@ RUN apt-get update -qq && \
         libssl-dev \
         make \
         openssl \
+        u-boot-tools \
         xz-utils
 
 # Install the latest nightly Clang/lld packages from apt.llvm.org and QEMU packages from Joel Stanley's PPA
