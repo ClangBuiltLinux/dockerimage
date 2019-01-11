@@ -40,7 +40,7 @@ RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
         clang-8 \
         lld-8 \
         llvm-8 \
-        skiboot \
+        qemu-skiboot \
         qemu-system-arm \
         qemu-system-ppc \
         qemu-system-x86 && \
