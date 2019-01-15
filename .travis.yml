@@ -2,27 +2,15 @@ sudo: required
 
 language: c
 
-env:
-  global:
-    - TAG=$(date +%Y%m%d)
-
-matrix:
-  include:
-    - name: "Ubuntu"
-      env: BASE=ubuntu REPO=clangbuiltlinux/${BASE}
-
 services:
   - docker
 
 script:
-  - docker build -t ${REPO}:${TAG} -t ${REPO}:latest .
-  - docker run --rm -ti ${REPO}:${TAG} clang-8 --version
-  - docker run --rm -ti ${REPO}:${TAG} ld.lld-8 --version
-  - docker run --rm -ti ${REPO}:${TAG} qemu-system-x86_64 --version
-  - docker run --rm -ti ${REPO}:${TAG} qemu-system-ppc --version
+  - make release
+  - make check
 
 deploy:
   provider: script
-  script: bash deploy.sh
+  script: make deploy
   on:
     branch: master
