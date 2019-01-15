@@ -9,17 +9,17 @@ release:
 	@$(DOCKER) build -t $(REPO):$(DATE) -t $(REPO):latest .
 
 check:
-	@$(DOCKER) run --rm -ti $(REPO):latest clang-8 --version
+	$(DOCKER) run --rm -ti $(REPO):latest clang-8 --version
 	@echo
-	@$(DOCKER) run --rm -ti $(REPO):latest ld.lld-8 --version
+	$(DOCKER) run --rm -ti $(REPO):latest ld.lld-8 --version
 	@echo
-	@$(DOCKER) run --rm -ti $(REPO):latest qemu-system-arm --version
+	$(DOCKER) run --rm -ti $(REPO):latest qemu-system-arm --version
 	@echo
-	@$(DOCKER) run --rm -ti $(REPO):latest qemu-system-aarch64 --version
+	$(DOCKER) run --rm -ti $(REPO):latest qemu-system-aarch64 --version
 	@echo
-	@$(DOCKER) run --rm -ti $(REPO):latest qemu-system-x86_64 --version
+	$(DOCKER) run --rm -ti $(REPO):latest qemu-system-x86_64 --version
 	@echo
-	@$(DOCKER) run --rm -ti $(REPO):latest qemu-system-ppc --version
+	$(DOCKER) run --rm -ti $(REPO):latest qemu-system-ppc --version
 
 deploy:
 	@REPO=$(REPO) DATE=$(DATE) bash deploy.sh
