@@ -20,4 +20,4 @@ Feel free to report any issues found in [our main Linux repo](https://github.com
 
 ## Pushing a new image manually
 
-Travis handles pushing images when new commits are added to the repo and daily via a cron. However, if the images need to be refreshed manually and you have been given access to push new images to Docker Hub, you can push the image by building it via `docker build -t clangbuiltlinux/ubuntu:$(date +%Y%m%d) -t clangbuiltlinux/ubuntu:latest .` then `DOCKER_USERNAME=<your_username> DOCKER_PASSWORD=<your_password> ./deploy.sh`
+Travis handles pushing images when new commits are added to the repo and daily via a cron. However, if the images need to be refreshed manually and you have been given access to push new images to Docker Hub, you can update the image by running `DOCKER_USERNAME=<your_username> DOCKER_PASSWORD=<your_password> make release deploy`.
