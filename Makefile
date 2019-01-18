@@ -9,9 +9,9 @@ release:
 	@$(DOCKER) build -t $(REPO):$(DATE) -t $(REPO):latest .
 
 check:
-	$(DOCKER) run --rm -ti $(REPO):latest clang-8 --version
+	$(DOCKER) run --rm -ti $(REPO):latest clang-9 --version
 	@echo
-	$(DOCKER) run --rm -ti $(REPO):latest ld.lld-8 --version
+	$(DOCKER) run --rm -ti $(REPO):latest ld.lld-9 --version
 	@echo
 	$(DOCKER) run --rm -ti $(REPO):latest qemu-system-arm --version
 	@echo

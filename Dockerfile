@@ -37,14 +37,14 @@ RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
     echo "deb http://ppa.launchpad.net/shenki/ppa/ubuntu cosmic main" | tee -a /etc/apt/sources.list && \
     apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-        clang-8 \
-        lld-8 \
-        llvm-8 \
+        clang-9 \
+        lld-9 \
+        llvm-9 \
         qemu-skiboot \
         qemu-system-arm \
         qemu-system-ppc \
         qemu-system-x86 && \
-    chmod -f +x /usr/lib/llvm-8/bin/*
+    chmod -f +x /usr/lib/llvm-9/bin/*
 
 # Add a function to easily clone torvalds/linux, linux-next, and linux-stable
 COPY clone_tree /root
