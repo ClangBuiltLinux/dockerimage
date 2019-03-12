@@ -1,8 +1,8 @@
 # ClangBuiltLinux Docker image
 
-This repo holds the files for [the ClangBuiltLinux Docker organization](https://hub.docker.com/r/clangbuiltlinux/). This allows us to have a consistent environment for our continuous integration, as well as getting other developers involved. It is based on the latest Ubuntu image and includes the nightly builds of Clang and lld from apt.llvm.org and binutils/QEMU for arm, arm64, powerpc, and x86_64.
+This repo holds the files for [the ClangBuiltLinux Docker organization](https://hub.docker.com/r/clangbuiltlinux/). This allows us to have a consistent environment for our continuous integration, as well as getting other developers involved. It is based on the latest Debian unstable image and includes the nightly builds of Clang and lld from apt.llvm.org and binutils/QEMU for arm, arm64, powerpc, and x86_64.
 
-Currently, this image is available for x86_64 hosts on [Docker Hub](https://hub.docker.com/r/clangbuiltlinux/ubuntu/) (`docker run -ti clangbuiltlinux/ubuntu`), which is updated daily via a Travis cron.
+Currently, this image is available for x86_64 hosts on [Docker Hub](https://hub.docker.com/r/clangbuiltlinux/debian/) (`docker run -ti clangbuiltlinux/debian`), which is updated daily via a Travis cron.
 
 We are thinking of ways to make this image available to other architectures. The biggest blocker is the nightly Clang builds are only for x86.
 

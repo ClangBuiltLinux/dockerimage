@@ -1,6 +1,6 @@
 DATE ?= $(shell date +%Y%m%d)
 DOCKER ?= docker
-REPO ?= clangbuiltlinux/ubuntu
+REPO ?= clangbuiltlinux/debian
 
 image:
 	@$(DOCKER) build -t $(REPO):latest .
