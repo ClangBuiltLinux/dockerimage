@@ -5,6 +5,13 @@ language: c
 services:
   - docker
 
+matrix:
+  include:
+    - name: "Development"
+      env: LLVM_VERSION=9
+    - name: "Stable"
+      env: LLVM_VERSION=8
+
 script:
   - make release
   - make check
