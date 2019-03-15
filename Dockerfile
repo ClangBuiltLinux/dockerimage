@@ -1,6 +1,10 @@
 # Use the latest slim Debian testing image as the base
 FROM debian:testing-slim
 
+# Default to the development branch of LLVM (currently 9)
+# User can override this to a stable branch (like 7 or 8)
+ARG LLVM_VERSION=9
+
 # Make sure that all packages are up to date then
 # install the base Debian packages that we need for
 # building the kernel
@@ -35,13 +39,13 @@ RUN apt-get update -qq && \
 
 # Install the latest nightly Clang/lld packages from apt.llvm.org
 RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-    echo "deb http://apt.llvm.org/unstable/ llvm-toolchain main" | tee -a /etc/apt/sources.list && \
+    echo "deb http://apt.llvm.org/unstable/ llvm-toolchain$(test ${LLVM_VERSION} -ne 9 && echo "-${LLVM_VERSION}") main" | tee -a /etc/apt/sources.list && \
     apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-        clang-9 \
-        lld-9 \
-        llvm-9 && \
-    chmod -f +x /usr/lib/llvm-9/bin/*
+        clang-${LLVM_VERSION} \
+        lld-${LLVM_VERSION} \
+        llvm-${LLVM_VERSION} && \
+    chmod -f +x /usr/lib/llvm-${LLVM_VERSION}/bin/*
 
 # Add a function to easily clone torvalds/linux, linux-next, and linux-stable
 COPY clone_tree /root
