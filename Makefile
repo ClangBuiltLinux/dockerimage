@@ -1,28 +1,35 @@
 DATE ?= $(shell date +%Y%m%d)
 DOCKER ?= docker
+LLVM_VERSION ?= 9
+LATEST_TAG := llvm$(LLVM_VERSION)-latest
 REPO ?= clangbuiltlinux/debian
 
+TAG_FLAGS := -t $(REPO):$(LATEST_TAG)
+ifeq ($(LLVM_VERSION),9)
+TAG_FLAGS := $(TAG_FLAGS) -t $(REPO):latest
+endif
+
 image:
-	@$(DOCKER) build -t $(REPO):latest .
+	@$(DOCKER) build $(TAG_FLAGS) --build-arg LLVM_VERSION=$(LLVM_VERSION) .
 
 release:
-	@$(DOCKER) build -t $(REPO):$(DATE) -t $(REPO):latest .
+	@$(DOCKER) build -t $(REPO):llvm$(LLVM_VERSION)-$(DATE) $(TAG_FLAGS) --build-arg LLVM_VERSION=$(LLVM_VERSION) .
 
 check:
-	$(DOCKER) run --rm -ti $(REPO):latest clang-9 --version
+	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) clang-$(LLVM_VERSION) --version
 	@echo
-	$(DOCKER) run --rm -ti $(REPO):latest ld.lld-9 --version
+	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) ld.lld-$(LLVM_VERSION) --version
 	@echo
-	$(DOCKER) run --rm -ti $(REPO):latest qemu-system-arm --version
+	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-arm --version
 	@echo
-	$(DOCKER) run --rm -ti $(REPO):latest qemu-system-aarch64 --version
+	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-aarch64 --version
 	@echo
-	$(DOCKER) run --rm -ti $(REPO):latest qemu-system-x86_64 --version
+	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-x86_64 --version
 	@echo
-	$(DOCKER) run --rm -ti $(REPO):latest qemu-system-ppc --version
+	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-ppc --version
 
 deploy:
-	@REPO=$(REPO) DATE=$(DATE) bash deploy.sh
+	@REPO=$(REPO) DATE=$(DATE) LLVM_VERSION=$(LLVM_VERSION) bash deploy.sh
 
 help:
 	@echo
