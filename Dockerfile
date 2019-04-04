@@ -38,6 +38,7 @@ RUN apt-get update -qq && \
         xz-utils
 
 # Install the latest nightly Clang/lld packages from apt.llvm.org
+# Delete all the apt list files since they're big and get stale quickly
 RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
     echo "deb http://apt.llvm.org/unstable/ llvm-toolchain$(test ${LLVM_VERSION} -ne 9 && echo "-${LLVM_VERSION}") main" | tee -a /etc/apt/sources.list && \
     apt-get update -qq && \
@@ -45,7 +46,8 @@ RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
         clang-${LLVM_VERSION} \
         lld-${LLVM_VERSION} \
         llvm-${LLVM_VERSION} && \
-    chmod -f +x /usr/lib/llvm-${LLVM_VERSION}/bin/*
+    chmod -f +x /usr/lib/llvm-${LLVM_VERSION}/bin/* && \
+    rm -rf /var/lib/apt/lists/*
 
 # Check and see Clang has not been rebuilt in more than five days if we are on the master branch and fail the build if so
 # We copy, execute, then remove because it is not necessary to carry this script in the image once it's built
