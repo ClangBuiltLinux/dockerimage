@@ -15,6 +15,8 @@ RUN apt-get update -qq && \
         binutils \
         binutils-aarch64-linux-gnu \
         binutils-arm-linux-gnueabi \
+        binutils-mips-linux-gnu \
+        binutils-mipsel-linux-gnu \
         binutils-powerpc-linux-gnu \
         binutils-powerpc64-linux-gnu \
         binutils-powerpc64le-linux-gnu \
@@ -32,6 +34,7 @@ RUN apt-get update -qq && \
         openssl \
         qemu-skiboot \
         qemu-system-arm \
+        qemu-system-mips \
         qemu-system-ppc \
         qemu-system-x86 \
         u-boot-tools \
