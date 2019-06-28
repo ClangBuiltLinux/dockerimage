@@ -24,9 +24,17 @@ check:
 	@echo
 	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-aarch64 --version
 	@echo
+	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-i386 --version
+	@echo
 	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-x86_64 --version
 	@echo
 	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-ppc --version
+	@echo
+	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-ppc64 --version
+	@echo
+	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-mips --version
+	@echo
+	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-mipsel --version
 
 deploy:
 	@REPO=$(REPO) DATE=$(DATE) LLVM_VERSION=$(LLVM_VERSION) bash deploy.sh
