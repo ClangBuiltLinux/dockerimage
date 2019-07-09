@@ -54,11 +54,11 @@ RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
 
 # Check and see Clang has not been rebuilt in more than five days if we are on the master branch and fail the build if so
 # We copy, execute, then remove because it is not necessary to carry this script in the image once it's built
-COPY clang-check.sh /
-RUN bash /clang-check.sh && \
-    rm /clang-check.sh
+COPY scripts/check-clang.sh /
+RUN bash /check-clang.sh && \
+    rm /check-clang.sh
 
 # Add a function to easily clone torvalds/linux, linux-next, and linux-stable
-COPY clone_tree /root
+COPY env/clone_tree /root
 RUN cat /root/clone_tree >> /root/.bashrc && \
     rm /root/clone_tree

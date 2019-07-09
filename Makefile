@@ -37,7 +37,7 @@ check:
 	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-mipsel --version
 
 deploy:
-	@REPO=$(REPO) DATE=$(DATE) LLVM_VERSION=$(LLVM_VERSION) bash deploy.sh
+	@REPO=$(REPO) DATE=$(DATE) LLVM_VERSION=$(LLVM_VERSION) bash scripts/deploy.sh
 
 help:
 	@echo
