@@ -16,25 +16,7 @@ release:
 	@$(DOCKER) build -t $(REPO):llvm$(LLVM_VERSION)-$(DATE) $(TAG_FLAGS) --build-arg LLVM_VERSION=$(LLVM_VERSION) .
 
 check:
-	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) clang-$(LLVM_VERSION) --version
-	@echo
-	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) ld.lld-$(LLVM_VERSION) --version
-	@echo
-	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-arm --version
-	@echo
-	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-aarch64 --version
-	@echo
-	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-i386 --version
-	@echo
-	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-x86_64 --version
-	@echo
-	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-ppc --version
-	@echo
-	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-ppc64 --version
-	@echo
-	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-mips --version
-	@echo
-	$(DOCKER) run --rm -ti $(REPO):$(LATEST_TAG) qemu-system-mipsel --version
+	$(DOCKER) run --rm -ti --env LLVM_VERSION=$(LLVM_VERSION) --mount type=bind,source=$(shell pwd),target=/dockerimage $(REPO):$(LATEST_TAG) bash /dockerimage/scripts/check-binaries.sh
 
 deploy:
 	@REPO=$(REPO) DATE=$(DATE) LLVM_VERSION=$(LLVM_VERSION) bash scripts/deploy.sh
