@@ -15,9 +15,9 @@ for BINARY in "${BINARIES[@]}"; do
     test_command "${BINARY}-${LLVM_VERSION}"
 done
 
-QEMU_PREFIXES=( "arm" "aarch64" "i386" "mips" "mipsel" "ppc" "ppc64" "x86_64" )
-for QEMU_PREFIX in "${QEMU_PREFIXES[@]}"; do
-    test_command "qemu-system-${QEMU_PREFIX}"
+QEMU_SUFFIXES=( "arm" "aarch64" "i386" "mips" "mipsel" "ppc" "ppc64" "x86_64" )
+for QEMU_SUFFIX in "${QEMU_SUFFIXES[@]}"; do
+    test_command "qemu-system-${QEMU_SUFFIX}"
 done
 
 BINUTILS_PREFIXES=( "" "aarch64-linux-gnu-" "arm-linux-gnueabi-" "mips-linux-gnu-"
