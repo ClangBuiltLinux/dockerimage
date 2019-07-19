@@ -1,5 +1,5 @@
-# Use the latest slim Debian testing image as the base
-FROM debian:testing-slim
+# Use the latest slim Debian stable image as the base
+FROM debian:stable-slim
 
 # Default to the development branch of LLVM (currently 9)
 # User can override this to a stable branch (like 7 or 8)
