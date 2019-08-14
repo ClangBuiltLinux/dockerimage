@@ -32,6 +32,8 @@ RUN apt-get update -qq && \
         libssl-dev \
         make \
         openssl \
+        ovmf \
+        qemu-efi-aarch64 \
         qemu-skiboot \
         qemu-system-arm \
         qemu-system-mips \
