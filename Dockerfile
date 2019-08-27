@@ -1,9 +1,9 @@
 # Use the latest slim Debian stable image as the base
 FROM debian:stable-slim
 
-# Default to the development branch of LLVM (currently 9)
-# User can override this to a stable branch (like 7 or 8)
-ARG LLVM_VERSION=9
+# Default to the development branch of LLVM (currently 10)
+# User can override this to a stable branch (like 8 or 9)
+ARG LLVM_VERSION=10
 
 # Make sure that all packages are up to date then
 # install the base Debian packages that we need for
@@ -46,7 +46,7 @@ RUN apt-get update -qq && \
 # Install the latest nightly Clang/lld packages from apt.llvm.org
 # Delete all the apt list files since they're big and get stale quickly
 RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-    echo "deb http://apt.llvm.org/buster/ llvm-toolchain-buster$(test ${LLVM_VERSION} -ne 9 && echo "-${LLVM_VERSION}") main" | tee -a /etc/apt/sources.list && \
+    echo "deb http://apt.llvm.org/buster/ llvm-toolchain-buster$(test ${LLVM_VERSION} -ne 10 && echo "-${LLVM_VERSION}") main" | tee -a /etc/apt/sources.list && \
     apt-get update -qq && \
     apt-get install --no-install-recommends -y \
         clang-${LLVM_VERSION} \
