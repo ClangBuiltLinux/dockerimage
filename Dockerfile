@@ -23,6 +23,7 @@ RUN apt-get update -qq && \
         bison \
         ca-certificates \
         ccache \
+        cpio \
         curl \
         expect \
         flex \
