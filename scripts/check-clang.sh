@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # We only want this check to run on the master branch of LLVM
-if [[ ${LLVM_VERSION} -eq 10 ]]; then
+if [[ ${LLVM_VERSION} -eq 11 ]]; then
     # The format of clang --version with apt.llvm.org builds looks like:
     # $ clang-9 --version
     # clang version 9.0.0-svn356030-1~exp1+0~20190313082415.405~1.gbp505100 (trunk)
