@@ -20,6 +20,7 @@ RUN apt-get update -qq && \
         binutils-powerpc-linux-gnu \
         binutils-powerpc64-linux-gnu \
         binutils-powerpc64le-linux-gnu \
+        binutils-s390x-linux-gnu \
         bison \
         ca-certificates \
         ccache \
