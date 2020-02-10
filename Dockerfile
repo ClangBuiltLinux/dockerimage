@@ -40,6 +40,7 @@ RUN apt-get update -qq && \
         qemu-skiboot \
         qemu-system-arm \
         qemu-system-mips \
+        qemu-system-misc \
         qemu-system-ppc \
         qemu-system-x86 \
         u-boot-tools \
