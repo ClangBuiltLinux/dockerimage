@@ -22,7 +22,7 @@ done
 
 BINUTILS_PREFIXES=( "" "aarch64-linux-gnu-" "arm-linux-gnueabi-" "mips-linux-gnu-"
                     "mipsel-linux-gnu-" "powerpc-linux-gnu-" "powerpc64-linux-gnu-"
-                    "powerpc64le-linux-gnu-" "s390x-linux-gnu-" )
+                    "powerpc64le-linux-gnu-" "riscv64-linux-gnu-" "s390x-linux-gnu-" )
 for BINUTILS_PREFIX in "${BINUTILS_PREFIXES[@]}"; do
     test_command "${BINUTILS_PREFIX}as"
 done
