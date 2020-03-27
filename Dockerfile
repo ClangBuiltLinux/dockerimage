@@ -43,7 +43,8 @@ RUN apt-get update -qq && \
         qemu-system-ppc \
         qemu-system-x86 \
         u-boot-tools \
-        xz-utils && \
+        xz-utils \
+        zstd && \
     rm -rf /var/lib/apt/lists/*
 
 # Install the latest nightly Clang/lld packages from apt.llvm.org
