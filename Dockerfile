@@ -37,8 +37,8 @@ RUN apt-get update -qq && \
         openssl \
         ovmf \
         qemu-efi-aarch64 \
-        qemu-skiboot \
         qemu-system-arm \
+        qemu-system-common \
         qemu-system-mips \
         qemu-system-ppc \
         qemu-system-x86 \
