@@ -1,16 +1,16 @@
-# Use the latest slim Debian unstable image as the base
-FROM debian:unstable-slim
+# Use the latest Ubuntu Focal (20.04 LTS) image as the base
+FROM ubuntu:focal
 
 # Default to the development branch of LLVM (currently 11)
 # User can override this to a stable branch (like 9 or 10)
 ARG LLVM_VERSION=11
 
 # Make sure that all packages are up to date then
-# install the base Debian packages that we need for
+# install the base Ubuntu packages that we need for
 # building the kernel
 RUN apt-get update -qq && \
-    apt-get upgrade -y && \
-    apt-get install --no-install-recommends -y \
+    DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
         bc \
         binutils \
         binutils-aarch64-linux-gnu \
@@ -38,7 +38,6 @@ RUN apt-get update -qq && \
         ovmf \
         qemu-efi-aarch64 \
         qemu-system-arm \
-        qemu-system-common \
         qemu-system-mips \
         qemu-system-ppc \
         qemu-system-x86 \
@@ -50,7 +49,7 @@ RUN apt-get update -qq && \
 # Install the latest nightly Clang/lld packages from apt.llvm.org
 # Delete all the apt list files since they're big and get stale quickly
 RUN curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-    echo "deb http://apt.llvm.org/unstable/ llvm-toolchain$(test ${LLVM_VERSION} -ne 11 && echo "-${LLVM_VERSION}") main" | tee -a /etc/apt/sources.list && \
+    echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal$(test ${LLVM_VERSION} -ne 11 && echo "-${LLVM_VERSION}") main" | tee -a /etc/apt/sources.list && \
     apt-get update -qq && \
     apt-get install --no-install-recommends -y \
         clang-${LLVM_VERSION} \
