@@ -8,7 +8,7 @@ if [[ ${LLVM_VERSION} -eq 11 ]]; then
     # Target: x86_64-pc-linux-gnu
     # Thread model: posix
     # InstalledDir: /usr/bin
-    CLANG_DATE=$(clang-${LLVM_VERSION} --version | head -n1 | cut -d '~' -f 3 | cut -d . -f 1)
+    CLANG_DATE=$(clang-"${LLVM_VERSION}" --version | head -n1 | cut -d '~' -f 3 | cut -d . -f 1)
 
     # Next, we need to parse the date into a format the date binary can understand
     # We use bash substring expansion: https://wiki.bash-hackers.org/syntax/pe#substring_expansion
