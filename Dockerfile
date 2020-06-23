@@ -33,6 +33,7 @@ RUN apt-get update -qq && \
         gnupg \
         libelf-dev \
         libssl-dev \
+        lz4 \
         make \
         openssl \
         ovmf \
