@@ -15,7 +15,7 @@ for BINARY in "${BINARIES[@]}"; do
     test_command "${BINARY}-${LLVM_VERSION}"
 done
 
-QEMU_SUFFIXES=("arm" "aarch64" "i386" "mips" "mipsel" "ppc" "ppc64" "x86_64")
+QEMU_SUFFIXES=("arm" "aarch64" "i386" "mips" "mipsel" "ppc" "ppc64" "riscv32" "riscv64" "x86_64")
 for QEMU_SUFFIX in "${QEMU_SUFFIXES[@]}"; do
     test_command "qemu-system-${QEMU_SUFFIX}"
 done

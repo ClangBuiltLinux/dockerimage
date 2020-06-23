@@ -34,11 +34,13 @@ RUN apt-get update -qq && \
         libelf-dev \
         libssl-dev \
         make \
+        opensbi \
         openssl \
         ovmf \
         qemu-efi-aarch64 \
         qemu-system-arm \
         qemu-system-mips \
+        qemu-system-misc \
         qemu-system-ppc \
         qemu-system-x86 \
         u-boot-tools \
