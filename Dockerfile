@@ -39,6 +39,7 @@ RUN apt-get update -qq && \
         qemu-efi-aarch64 \
         qemu-system-arm \
         qemu-system-mips \
+        qemu-system-misc \
         qemu-system-ppc \
         qemu-system-x86 \
         u-boot-tools \
