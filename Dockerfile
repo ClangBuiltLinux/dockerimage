@@ -34,6 +34,7 @@ RUN apt-get update -qq && \
         libelf-dev \
         libssl-dev \
         make \
+        opensbi \
         openssl \
         ovmf \
         qemu-efi-aarch64 \
