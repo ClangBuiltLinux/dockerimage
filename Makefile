@@ -1,11 +1,11 @@
 DATE ?= $(shell date +%Y%m%d)
 DOCKER ?= docker
-LLVM_VERSION ?= 11
+LLVM_VERSION ?= 12
 LATEST_TAG := llvm$(LLVM_VERSION)-latest
 REPO ?= clangbuiltlinux/ubuntu
 
 TAG_FLAGS := -t $(REPO):$(LATEST_TAG)
-ifeq ($(LLVM_VERSION),11)
+ifeq ($(LLVM_VERSION),12)
 TAG_FLAGS := $(TAG_FLAGS) -t $(REPO):latest
 endif
 

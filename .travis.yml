@@ -8,9 +8,9 @@ services:
 matrix:
   include:
     - name: "Development"
-      env: LLVM_VERSION=11
+      env: LLVM_VERSION=12
     - name: "Stable"
-      env: LLVM_VERSION=10
+      env: LLVM_VERSION=11
 
 script:
   - make release
